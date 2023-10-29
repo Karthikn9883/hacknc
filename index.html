@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Prediction Results</title>
+    <style>
+        /* ... (same as before) */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Transaction Prediction Results</h1>
+        <div id="results">
+            <p><strong>Custom Messages:</strong></p>
+            <pre id="customMessages"></pre>
+            <p><strong>Predicted Merchant:</strong> <span id="predictedMerchant"></span></p>
+            <p><strong>Predicted Transaction Details:</strong></p>
+            <pre id="transactionDetails"></pre>
+        </div>
+    </div>
+
+    <script>
+        async function fetchData() {
+            const resultsDiv = document.getElementById('results');
+            try {
+                const response = await fetch('http://127.0.0.1:5000/predict');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                const customMessages = document.getElementById('customMessages');
+                customMessages.innerText = data.custom_messages.join('\n');
+
+                const predictedMerchant = document.getElementById('predictedMerchant');
+                predictedMerchant.innerText = data.predicted_merchant;
+
+                const transactionDetails = document.getElementById('transactionDetails');
+                // Function to format the object without curly braces
+                const formatObject = (obj) => {
+                    return Object.entries(obj).map(([key, value]) => `${key}: ${value}`).join('\n');
+                };
+                // If there are multiple transaction details, format each one
+                if (Array.isArray(data.predicted_transaction_details)) {
+                    transactionDetails.innerText = data.predicted_transaction_details.map(formatObject).join('\n\n');
+                } else {
+                    transactionDetails.innerText = formatObject(data.predicted_transaction_details);
+                }
+            } catch (error) {
+                console.error('Fetch operation failed: ', error.message);
+                resultsDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+
+        fetchData();
+    </script>
+</body>
+</html>

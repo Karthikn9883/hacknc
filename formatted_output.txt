@@ -1,0 +1,84 @@
+Custom Messages:
+Merchant: Nike, Message: You've made several purchases at Nike. Consider getting a Nike membership or look for official coupons online.
+Merchant: Amazon, Message: There are many transactions at Amazon. Keep an eye out for upcoming deals to save money.
+
+Predicted Merchant: Amazon
+
+Predicted Transaction Details:
+Amount Spent ($): 68.29
+Date: Sun, 01 Oct 2023 00:00:00 GMT
+Day of Week: 6
+Merchant: Amazon
+Month: 10
+
+Amount Spent ($): 27.52
+Date: Sun, 01 Oct 2023 00:00:00 GMT
+Day of Week: 6
+Merchant: Amazon
+Month: 10
+
+Amount Spent ($): 95.61
+Date: Wed, 04 Oct 2023 00:00:00 GMT
+Day of Week: 2
+Merchant: Amazon
+Month: 10
+
+Amount Spent ($): 30.02
+Date: Sun, 08 Oct 2023 00:00:00 GMT
+Day of Week: 6
+Merchant: Amazon
+Month: 10
+
+Amount Spent ($): 6.10
+Date: Sun, 08 Oct 2023 00:00:00 GMT
+Day of Week: 6
+Merchant: Amazon
+Month: 10
+
+Amount Spent ($): 45.73
+Date: Sun, 15 Oct 2023 00:00:00 GMT
+Day of Week: 6
+Merchant: Amazon
+Month: 10
+
+Amount Spent ($): 45.44
+Date: Fri, 20 Oct 2023 00:00:00 GMT
+Day of Week: 4
+Merchant: Amazon
+Month: 10
+
+Amount Spent ($): 65.32
+Date: Tue, 24 Oct 2023 00:00:00 GMT
+Day of Week: 1
+Merchant: Amazon
+Month: 10
+
+Amount Spent ($): 69.44
+Date: Sun, 29 Oct 2023 00:00:00 GMT
+Day of Week: 6
+Merchant: Amazon
+Month: 10
+
+Amount Spent ($): 61.10
+Date: Wed, 01 Nov 2023 00:00:00 GMT
+Day of Week: 2
+Merchant: Amazon
+Month: 11
+
+Amount Spent ($): 45.98
+Date: Mon, 13 Nov 2023 00:00:00 GMT
+Day of Week: 0
+Merchant: Amazon
+Month: 11
+
+Amount Spent ($): 38.29
+Date: Thu, 16 Nov 2023 00:00:00 GMT
+Day of Week: 3
+Merchant: Amazon
+Month: 11
+
+Amount Spent ($): 83.16
+Date: Sat, 25 Nov 2023 00:00:00 GMT
+Day of Week: 5
+Merchant: Amazon
+Month: 11

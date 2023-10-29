@@ -1,0 +1,68 @@
+---
+title: "apiUse"
+output: html_document
+date: "2023-10-29"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(plumber)
+library(ggplot2)
+library(dplyr)
+```
+
+#* @apiTitle Spending and Savings API
+```{r}
+#* Load the datasets when the API starts
+spending_trends <- read.csv("spending_trends.csv")
+m_category <- read.csv("M_category.csv")
+merged_data <- merge(spending_trends, m_category, by = "Merchant")
+
+#* @param monthly_income numeric The monthly income value
+#* @post /generateChart
+function(monthly_income) {
+  
+  category_spending <- merged_data %>%
+    group_by(Category) %>%
+    summarise(Total_Spent = sum(AmountSpent))
+  
+  # Compute the savings
+  total_spent <- sum(category_spending$Total_Spent)
+  savings <- monthly_income - total_spent
+
+  # Add the savings to the category_spending data frame
+  category_spending <- rbind(category_spending, data.frame(Category = "Savings", Total_Spent = savings))
+
+  # Define a custom color palette
+  custom_colors <- c("Caf." = "#FF9999", 
+                     "Food" = "#66B2FF", 
+                     "Gas" = "#99FF99", 
+                     "Grocery" = "#FFCC66", 
+                     "Online" = "#C285FF", 
+                     "Savings" = "#FF66B2", 
+                     "Shopping" = "#99E6E6")
+
+  # Create the pie chart
+  p <- ggplot(category_spending, aes(x = "", y = Total_Spent, fill = Category)) +
+    geom_bar(stat = "identity", width = 1) +
+    coord_polar(theta = "y") + 
+    scale_fill_manual(values = custom_colors) +
+    labs(title = "Spending and Savings by Category", fill = "Category")
+
+  # Save the plot as a JPG file
+  img_path <- "pie_chart.jpg"
+  ggsave(img_path, plot = p, width = 10, height = 10, dpi = 300, device = "jpeg")
+
+  # Return the path to the image
+  return(list(path = img_path))
+}
+```
+```{r}
+r <- plumb("useofapp.Rmd")
+r$run(port=8000)
+```
+
